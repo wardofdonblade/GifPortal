@@ -79,6 +79,20 @@ pub mod myepicproject {
     item_ref.total_upvotes -= 1;
     Ok(())  
   }
+
+  pub fn send_tip(ctx: Context<UserStruct>, gif_link: String) -> ProgramResult {
+    let base_account = &mut ctx.accounts.base_account;
+    let user = &mut ctx.accounts.user;
+    let user_address = *user.to_account_info().key;
+
+    let item = base_account.gif_list.iter_mut().find(|x| x.gif_link == gif_link);
+    
+    let item_ref = &mut item.unwrap();
+    let recipient = item_ref.user_address;
+    
+    //send from user_address to recipient
+    Ok(())  
+  }
 }
 
 #[derive(Accounts)]
