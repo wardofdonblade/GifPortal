@@ -30,6 +30,23 @@ const main = async() => {
     },
   });
   
+
+
+  // You'll need to now pass a GIF link to the function! You'll also need to pass in the user submitting the GIF!
+  await program.rpc.upvote("https://media0.giphy.com/media/26gs78HRO8sOuhTkQ/200w.webp?cid=ecf05e47hfbzbi6simc9chvcv4ff96tq6qznus3sh79y8cok&rid=200w.webp&ct=g", {
+    accounts: {
+      baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
+    },
+  });
+
+  await program.rpc.removeUpvote("https://media0.giphy.com/media/26gs78HRO8sOuhTkQ/200w.webp?cid=ecf05e47hfbzbi6simc9chvcv4ff96tq6qznus3sh79y8cok&rid=200w.webp&ct=g", {
+    accounts: {
+      baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
+    },
+  });
+
   // Call the account.
   account = await program.account.baseAccount.fetch(baseAccount.publicKey);
   console.log('👀 GIF Count', account.totalGifs.toString())
